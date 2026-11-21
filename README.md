@@ -24,6 +24,7 @@ Run `./install.sh` on your machine (needs git, Node.js 18+, and [uv](https://doc
 | 18 | [Open Interpreter](https://github.com/OpenInterpreter/open-interpreter) | `uv tool install open-interpreter` (Python 3.11) | `interpreter` |
 | 19 | [Aider](https://github.com/Aider-AI/aider) | `uv tool install aider-chat` | `aider` |
 | 20 | [OpenHands (formerly OpenDevin)](https://github.com/All-Hands-AI/OpenHands) | cloned; normally run via Docker (see its README) | – |
+| 21 | [Artemis](https://github.com/google/artemis) | cloned → `uv sync` + `uv tool install -e .`; MCP added to Claude Code with `artemis mcp --install claude`. Needs `adb` + an Android phone (USB debugging) or emulator | `artemis` |
 
 ## Adding the MCP servers to Claude Code
 

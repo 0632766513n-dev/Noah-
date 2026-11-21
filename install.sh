@@ -37,6 +37,7 @@ REPOS=(
   anaisbetts/mcp-installer
   samanhappy/mcphub
   All-Hands-AI/OpenHands
+  google/artemis
 )
 for r in "${REPOS[@]}"; do
   name="${r#*/}"
@@ -46,6 +47,12 @@ for r in "${REPOS[@]}"; do
     echo "clone  $r"; try git clone -q --depth 1 "https://github.com/$r.git" "$DEST/$name"
   fi
 done
+
+step "Artemis (Android agent + MCP server; needs adb and an Android device/emulator)"
+if [ -d "$DEST/artemis" ]; then
+  (cd "$DEST/artemis" && try uv sync && try uv tool install -e . && try uv run artemis mcp --install claude)
+fi
+command -v adb >/dev/null || echo "NOTE: install adb (Android platform-tools) for Artemis"
 
 echo
 if [ ${#FAILED[@]} -eq 0 ]; then echo "All steps succeeded."; else
