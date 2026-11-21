@@ -50,7 +50,9 @@ done
 
 step "Artemis (Android agent + MCP server; needs adb and an Android device/emulator)"
 if [ -d "$DEST/artemis" ]; then
-  (cd "$DEST/artemis" && try uv sync && try uv tool install -e . && try uv run artemis mcp --install claude)
+  pushd "$DEST/artemis" >/dev/null
+  try uv sync && try uv tool install -e . && try uv run artemis mcp --install claude
+  popd >/dev/null
 fi
 command -v adb >/dev/null || echo "NOTE: install adb (Android platform-tools) for Artemis"
 
